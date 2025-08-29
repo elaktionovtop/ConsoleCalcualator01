@@ -15,7 +15,6 @@ int main() {
     while (runCommand())
         ;
 
-    cin.get();
     print("To close - press Enter");
     cin.get();
     return 0;
@@ -46,6 +45,7 @@ bool runCommand()
     }
 
     if (op == "end") {
+        cin.get();
         return false;
     }
 
