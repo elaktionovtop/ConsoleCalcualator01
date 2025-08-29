@@ -17,9 +17,9 @@ int main() {
     }
 
     std::string op;
-    std::string allowed[] = { "+", "-", "*", "/" };
+    std::string allowed[] = { "+", "-", "*", "/", "^"};
 
-    std::print("Введи операцию (+ - * /): ");
+    std::print("Введи операцию (+ - * / ^): ");
     cin >> op;
 
     if (std::find(std::begin(allowed), std::end(allowed), op)
@@ -36,13 +36,13 @@ int main() {
     }
     cin.get();
 
-    double result = compute(a, b, op);
+    double result = std::round(compute(a, b, op) * 1000.0) / 1000;
 
     if (std::isnan(result)) {
         std::println("Результат некорректен");
     }
     else {
-        std::println("{} + {} = {}", a, b, result);
+        std::println("{} {} {} = {}", a, op, b, result);
     }
 
     cin.get();
@@ -62,6 +62,7 @@ double compute(double a, double b, const std::string& op) {
     if (op == "-") return a - b;
     if (op == "*") return a * b;
     if (op == "/") return (b != 0) ? a / b : std::nan("");
+    if (op == "^") return std::pow(a,b);
 
     return std::nan(""); // неизвестная операция
 }
